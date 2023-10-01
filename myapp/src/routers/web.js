@@ -1,21 +1,29 @@
 
 const express = require('express');
 const router = express.Router();
-const { getHomePage, getAbc, postNewUser, userManagement, getAllUsers, getDetailUser } = require('../controllers/homeController');
+const { getHomePageController, getAbcController, postNewUserController
+    , userManagementController, getAllUsersController, getDetailUserController
+    , putUpdateUserController, deleteUserController
+    , screenditUserController
+} = require('../controllers/homeController');
 
 
+router.get('/', getHomePageController);
 
-router.get('/', getHomePage);
+router.get('/test', getAbcController)
 
-router.get('/test', getAbc)
+router.get('/user-management', userManagementController)
 
-router.get('/user-management', userManagement)
+router.post('/create-user', postNewUserController)
 
-router.post('/create-user', postNewUser)
+router.get('/list-users', getAllUsersController);
 
-router.get('/list-users', getAllUsers);
+router.get('/detail-user/:userId', getDetailUserController);
 
+router.get('/edit-user/:userId', screenditUserController);
 
-router.get('/detail-user', getDetailUser);
+router.post('/update-user/:userId', putUpdateUserController);
+
+router.post('/delete-user/:userId', deleteUserController);
 
 module.exports = router;
